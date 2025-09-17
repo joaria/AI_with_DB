@@ -1,10 +1,4 @@
-# **AI with Data Advanced Skilling Initiative**
-
-<div align="center">
-  <img src="labs/imgs/banner_ai_db.png" alt="AI with DB Banner" width="100%"/>
-</div>
-
-## Prerequisites (One time set up for all the labs)
+## Prerequisites (One time set up for the 2 labs)
 
 ### python requirements
 
@@ -33,7 +27,6 @@
   - **Azure OpenAI LLM Service** (GPT-4.1 or GPT-4 deployed). 
   - **Azure OpenAI Embedding Service** (text-embedding-ada-002). 
   - **Azure Database for PostgreSQL** 
-  - **Azure Cosmos DB**
 
   Note: At this point we are not providing scripts for automatically deploying resources, so you would need to go to your Azure portal and ensure you have these ready.
 
@@ -55,18 +48,39 @@ Assuming you have deployed an Azure Database for postgres flexible server in you
     - We have provided a script for easily populating the database. Got to src folder and run below in terminal:
         -- **python db_init.py**
         -- If set up is successful, you should see "Successfully set up the tables and closed the connection."
-#### Cosmos DB
 
-Assuming you have deployed an Azure Cosmos DB resource:
+### Database details
 
-1. Head to "Data Explorer" on lefts side panel -> Create a new database (we have named it Contoso)
-2. Create a new container under this database with container id "customer_chats" and put customer_id for partition key.
-3. Got to your .env file:
-    - For **COSMOS_CONNECTION_STRING**, put below value:
-        -- In your Azure cosmos db page, in left panel, go to Settings -> Keys and copy the value under "PRIMARY CONNECTION STRING"
-    - Change COSMOS_DATABASE_NAME only if you have chosen a different name for your database than "Contoso"
+* The name of the database should be "netflix".
 
-Nothing else needed, data for this will be populated during the labs. 
+* One table "netflix_shows" with the following schema:
+
+    -- Table: public.netflix_shows
+
+    -- DROP TABLE IF EXISTS public.netflix_shows;
+
+    CREATE TABLE IF NOT EXISTS public.netflix_shows
+    (
+        show_id text COLLATE pg_catalog."default" NOT NULL,
+        type text COLLATE pg_catalog."default",
+        title text COLLATE pg_catalog."default",
+        director text COLLATE pg_catalog."default",
+        cast_members text COLLATE pg_catalog."default",
+        country text COLLATE pg_catalog."default",
+        date_added date,
+        release_year integer,
+        rating text COLLATE pg_catalog."default",
+        duration text COLLATE pg_catalog."default",
+        listed_in text COLLATE pg_catalog."default",
+        description text COLLATE pg_catalog."default",
+        CONSTRAINT netflix_shows_pkey PRIMARY KEY (show_id)
+    )
+
+    TABLESPACE pg_default;
+
+* You can pupulate the table using this script: https://github.com/neondatabase-labs/postgres-sample-dbs?tab=readme-ov-file#netflix-data
+
+* For ease of use of the labs, truncate the table to 100 rows.
 
 ### Connecting to Azure AI services
 
