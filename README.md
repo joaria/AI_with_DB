@@ -1,3 +1,11 @@
+# PostgreSQL DB AI LAB - DB AI Insiders
+
+Both of us have been DBAs historically and not developers and so for this lab, we focused on understanding how to make vector search and embeddings work for PostgreSQL DB. We are both DB Insiders for PostgreSQL. We also included the basics of Semantic Kernel and Agents as well.
+
+Jose Arias - Arias.Jose@microsoft.com
+
+Geraldine Caszo - Geraldine.Caszo@microsoft.com
+
 ## Prerequisites (One time set up for the 2 labs)
 
 ### python requirements
